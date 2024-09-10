@@ -381,10 +381,9 @@ class Top_Bar {
 		this.dont_move = false;
 		this.prevScrollpos = window.scrollY;
 		this.top_bar = byId("TopBar");
-		this.CACHE_MIN_WIDTH_TO_HIDE_NAV = 0;
+		this.open_sidebar_btn = byId("open-sidebar-btnR");
 
 		this.nav_to_sidebar();
-		this.open_sidebar_btn = byId("open-sidebar-btnR");
 	}
 
 	set_title(title) {
@@ -422,6 +421,7 @@ class Top_Bar {
 		if (!this.dynamic_nav) {
 			return false;
 		}
+		page.handle_nav_click(PAGE_TYPE); // to make sure the current page is active and css is applied
 
 		let nav_bar = document.getElementById('nav-bar');
 		for (let i = 0; i < nav_bar.children.length; i++) {
@@ -429,6 +429,8 @@ class Top_Bar {
 			item.onclick = function (ev) {
 				ev.preventDefault();
 				let new_page_type = ev.target.getAttribute("data-page-type");
+
+				console.log("new_page_type", new_page_type);
 
 				page.handle_nav_click(new_page_type);
 			}
@@ -453,27 +455,21 @@ class Top_Bar {
 		let nav_bar = document.getElementById('nav-bar');
 
 		nav_bar.style.display = 'block';
-		console.log('width', width,'\nnav_bar height', nav_bar.offsetHeight, '\nCACHE_MIN_WIDTH_TO_HIDE_NAV', this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
+		// console.log('width', width,'\nnav_bar height', nav_bar.offsetHeight, '\nCACHE_MIN_WIDTH_TO_HIDE_NAV', this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
 
 		if (document.getElementById('TopBar').offsetHeight >= 60) {
 			nav_bar.style.display = 'none';
-
-			if (this.CACHE_MIN_WIDTH_TO_HIDE_NAV == 0){
-				this.CACHE_MIN_WIDTH_TO_HIDE_NAV = width;
-			}
 			
-			this.CACHE_MIN_WIDTH_TO_HIDE_NAV = Math.max(width, this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
-
+			// show the open sidebar button
 			this.open_sidebar_btn.style.display = 'block';
 		} else {
-			// console.log('window.innerWidth', window.innerWidth);
-			// console.log('topbar height', document.getElementById('TopBar').offsetHeight);
-			// console.log('CACHE_MIN_WIDTH', CACHE_MIN_WIDTH);
-			if (width >= this.CACHE_MIN_WIDTH_TO_HIDE_NAV)
-			{
+
 				nav_bar.style.display = 'block';
+				
+				// hide the open sidebar button
 				this.open_sidebar_btn.style.display = 'none';
-			}
+				
+				sidebar_control.closeNavR(); // to make sure double navs are not open
 		}
 	}
 
