@@ -19,6 +19,8 @@ class PageHandlerTemplate{
 		tools.fake_push({
 			"page": this.type
 		}, this.href);
+
+		// console.trace()
 	}
 
 	show() {
@@ -161,24 +163,21 @@ class Page{
 		})
 	}
 
-	handle_nav_click(new_page_type='home'){
+	async handle_nav_click(new_page_type='home'){
 		let that = this;
 		let _last_page_type = PAGE_TYPE;
-		function on_back_button(ev){
-			let last_page_type = last_page_type;
+		console.log("Last page type: " + _last_page_type, '\nNew page type: ' + new_page_type)
 
+		let on_back_button = (ev, last_page_type=_last_page_type) =>{
 			if (last_page_type == new_page_type){
 				return;
 			} else {
 				that.handle_nav_click(last_page_type);
 			}
+			// console.trace()
 		}
 
-		if (new_page_type == _last_page_type){
-			return;
-		}
-
-		HISTORY_ACTION.push(on_back_button);
+		PAGE_TYPE = new_page_type;
 
 
 
@@ -208,11 +207,18 @@ class Page{
 		}
 
 		
+		if (new_page_type == _last_page_type){
+			return;
+		}
+
 		sidebar_control.closeNav();
 				
 		page.initialize();
 
-		HISTORY_ACTION
+		// new state need to be added after sidebar is closed
+		await tools.sleep(100);
+		HISTORY_ACTION.push(on_back_button);
+
 
 	}
 }

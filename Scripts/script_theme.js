@@ -363,7 +363,7 @@ class SidebarControl {
 	closeNavR() {
 		if (this.is_open("R")) {
 			history.back();
-			console.trace()
+			// console.trace()
 		}
 	}
 
@@ -468,7 +468,7 @@ class Top_Bar {
 				
 				// hide the open sidebar button
 				this.open_sidebar_btn.style.display = 'none';
-				
+
 				sidebar_control.closeNavR(); // to make sure double navs are not open
 		}
 	}

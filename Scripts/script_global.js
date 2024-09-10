@@ -318,7 +318,7 @@ class Tools {
 			state: state
 		}, document.title, url);
 		console.log("Fake replace", state, url);
-		console.trace();
+		// console.trace();
 	}
 
 
@@ -335,7 +335,7 @@ class Tools {
 			state: state
 		}, document.title, url);
 		console.log("Fake push", state, url);
-		console.trace();
+		// console.trace();
 	}
 
 	/**
@@ -743,7 +743,7 @@ class Popup_Msg {
 		}
 
 		history.back(); //this.hide()
-		console.trace();
+		// console.trace();
 
 		await tools.sleep(200);
 
@@ -964,9 +964,13 @@ if (window.history && "pushState" in history) {
 		// guard against popstate event on chrome init
 		//log(evt.state)
 
+		console.log(HISTORY_ACTION, history)
+
 		if (HISTORY_ACTION.length) {
 			let action = HISTORY_ACTION.pop()
 			action()
+
+			console.log("History action", action)
 
 			return false
 		}

@@ -44,16 +44,23 @@
 	color: #ffffff;
 }
 
+@media screen and (max-width: 1200px) {
+	.page .heading-header-text {
+		font-size: 4rem;
+	}
+	
+}
+
 
 @media screen and (max-width: 960px) {
 	.page .heading-header-text {
-		font-size: 4rem;
+		font-size: 3.5rem;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.page .heading-header-text {
-		font-size: 3rem;
+		font-size: 2.8rem;
 	}
 }
 
@@ -65,7 +72,7 @@
 
 @media screen and (max-width: 480px) {
 	.page .heading-header-text {
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 	}
 }
 
