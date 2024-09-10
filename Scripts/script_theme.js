@@ -381,7 +381,7 @@ class Top_Bar {
 		this.dont_move = false;
 		this.prevScrollpos = window.scrollY;
 		this.top_bar = byId("TopBar");
-		this.CACHE_MIN_WIDTH_TO_HIDE_NAV = 1000;
+		this.CACHE_MIN_WIDTH_TO_HIDE_NAV = 0;
 
 		this.nav_to_sidebar();
 		this.open_sidebar_btn = byId("open-sidebar-btnR");
@@ -422,41 +422,15 @@ class Top_Bar {
 		if (!this.dynamic_nav) {
 			return false;
 		}
-		let right_bar_items = sidebar_control.right_bar_items;
-		
+
 		let nav_bar = document.getElementById('nav-bar');
 		for (let i = 0; i < nav_bar.children.length; i++) {
 			let item = nav_bar.children[i];
 			item.onclick = function (ev) {
 				ev.preventDefault();
-				PAGE_TYPE = ev.target.getAttribute("data-page-type");
+				let new_page_type = ev.target.getAttribute("data-page-type");
 
-				for (let j = 0; j < nav_bar.children.length; j++) {
-					if(nav_bar.children[j].getAttribute("data-page-type") != PAGE_TYPE){
-						nav_bar.children[j].classList.remove("disabled");
-						nav_bar.children[j].classList.remove("highlight");
-					} else {
-						nav_bar.children[j].classList.add("disabled");
-						nav_bar.children[j].classList.add("highlight");
-					}
-				}
-				for (let j = 0; j < right_bar_items.children.length; j++) {
-					if (right_bar_items.children[j].getAttribute("data-page-type") != PAGE_TYPE) {
-						right_bar_items.children[j].classList.remove("disabled");
-						right_bar_items.children[j].classList.remove("highlight");
-					} else {
-						right_bar_items.children[j].classList.add("disabled");
-						right_bar_items.children[j].classList.add("highlight");
-					}
-				}
-				ev.target.classList.add("disabled");
-				ev.target.classList.add("highlight");
-
-				
-				sidebar_control.closeNav();
-				
-				page.initialize();
-
+				page.handle_nav_click(new_page_type);
 			}
 
 			let copy = item.cloneNode(true);
@@ -468,29 +442,35 @@ class Top_Bar {
 
 	
 
-	update_nav_mode() {
+	update_nav_mode(ev=null) {
 		if (!this.dynamic_nav) {
 			return false;
 		}
+
+		let width = ev ? ev.target.innerWidth : window.innerWidth;
+
 		// if topbar height is > 55, then it is in mobile mode
 		let nav_bar = document.getElementById('nav-bar');
-		if (document.getElementById('TopBar').offsetHeight > 60) {
+
+		nav_bar.style.display = 'block';
+		console.log('width', width,'\nnav_bar height', nav_bar.offsetHeight, '\nCACHE_MIN_WIDTH_TO_HIDE_NAV', this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
+
+		if (document.getElementById('TopBar').offsetHeight >= 60) {
 			nav_bar.style.display = 'none';
 
 			if (this.CACHE_MIN_WIDTH_TO_HIDE_NAV == 0){
-				this.CACHE_MIN_WIDTH_TO_HIDE_NAV = window.innerWidth;
+				this.CACHE_MIN_WIDTH_TO_HIDE_NAV = width;
 			}
 			
-			this.CACHE_MIN_WIDTH_TO_HIDE_NAV = Math.max(window.innerWidth, this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
+			this.CACHE_MIN_WIDTH_TO_HIDE_NAV = Math.max(width, this.CACHE_MIN_WIDTH_TO_HIDE_NAV);
 
 			this.open_sidebar_btn.style.display = 'block';
 		} else {
 			// console.log('window.innerWidth', window.innerWidth);
 			// console.log('topbar height', document.getElementById('TopBar').offsetHeight);
 			// console.log('CACHE_MIN_WIDTH', CACHE_MIN_WIDTH);
-			if (window.innerWidth < this.CACHE_MIN_WIDTH_TO_HIDE_NAV) {
-				
-			} else {
+			if (width >= this.CACHE_MIN_WIDTH_TO_HIDE_NAV)
+			{
 				nav_bar.style.display = 'block';
 				this.open_sidebar_btn.style.display = 'none';
 			}
@@ -519,8 +499,8 @@ var top_bar = new Top_Bar();
 top_bar.show();
 
 
-window.onresize = function () {
-	top_bar.update_nav_mode();
+window.onresize = function (ev) {
+	top_bar.update_nav_mode(ev);
 }
 top_bar.update_nav_mode();
 
