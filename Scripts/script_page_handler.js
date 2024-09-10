@@ -1,5 +1,8 @@
 class PageHandlerTemplate{
 	constructor(){
+		this.type = null;
+		this.href = window.location.href;
+		this.my_part = document.createElement("div");
 	}
 
 	initialize(){
@@ -11,8 +14,21 @@ class PageHandlerTemplate{
 	hide(){
 	}
 
-	show(){
+	async make_push() {
+		await tools.sleep(100);
+		tools.fake_push({
+			"page": this.type
+		}, this.href);
 	}
+
+	show() {
+		this.my_part.classList.add("active");
+		page.show_actions_button();
+
+		this.make_push();
+
+	}
+
 
 	on_action_button(){
 	}
@@ -143,6 +159,61 @@ class Page{
 			top: 0,
 			behavior: 'smooth'
 		})
+	}
+
+	handle_nav_click(new_page_type='home'){
+		let that = this;
+		let _last_page_type = PAGE_TYPE;
+		function on_back_button(ev){
+			let last_page_type = last_page_type;
+
+			if (last_page_type == new_page_type){
+				return;
+			} else {
+				that.handle_nav_click(last_page_type);
+			}
+		}
+
+		if (new_page_type == _last_page_type){
+			return;
+		}
+
+		HISTORY_ACTION.push(on_back_button);
+
+
+
+			
+
+		let nav_bar = document.getElementById('nav-bar');
+
+		let right_bar_items = sidebar_control.right_bar_items;
+		
+		for (let j = 0; j < nav_bar.children.length; j++) {
+			if(nav_bar.children[j].getAttribute("data-page-type") != PAGE_TYPE){
+				nav_bar.children[j].classList.remove("disabled");
+				nav_bar.children[j].classList.remove("highlight");
+			} else {
+				nav_bar.children[j].classList.add("disabled");
+				nav_bar.children[j].classList.add("highlight");
+			}
+		}
+		for (let j = 0; j < right_bar_items.children.length; j++) {
+			if (right_bar_items.children[j].getAttribute("data-page-type") != PAGE_TYPE) {
+				right_bar_items.children[j].classList.remove("disabled");
+				right_bar_items.children[j].classList.remove("highlight");
+			} else {
+				right_bar_items.children[j].classList.add("disabled");
+				right_bar_items.children[j].classList.add("highlight");
+			}
+		}
+
+		
+		sidebar_control.closeNav();
+				
+		page.initialize();
+
+		HISTORY_ACTION
+
 	}
 }
 

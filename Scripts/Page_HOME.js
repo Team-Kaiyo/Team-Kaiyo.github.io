@@ -1,5 +1,6 @@
-class Home_Page {
+class Home_Page extends PageHandlerTemplate {
 	constructor() {
+		super();
 		this.type = "home"
 
 		this.href = tools.full_path("/")
@@ -19,22 +20,6 @@ class Home_Page {
 	}
 
 	
-	async make_push() {
-		await tools.sleep(100);
-		tools.fake_push({
-			"page": "solar_system"
-		}, this.href);
-	}
-
-	show() {
-		this.my_part.classList.add("active");
-		page.show_actions_button();
-
-		
-		this.make_push();
-
-	}
-
 	clear() {
 	}
 
