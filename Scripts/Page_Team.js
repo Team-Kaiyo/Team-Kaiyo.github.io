@@ -4,7 +4,7 @@ class Team_Page {
 
 		this.href = tools.full_path("/Team.html");
 
-		this.my_part = document.getElementById("life-page");
+		this.my_part = document.getElementById("team-page");
 	}
 
 	async initialize() {

@@ -472,7 +472,7 @@ class Top_Bar {
 		if (!this.dynamic_nav) {
 			return false;
 		}
-		// if topbar height is > 60px, then it is in mobile mode
+		// if topbar height is > 55, then it is in mobile mode
 		let nav_bar = document.getElementById('nav-bar');
 		if (document.getElementById('TopBar').offsetHeight > 60) {
 			nav_bar.style.display = 'none';

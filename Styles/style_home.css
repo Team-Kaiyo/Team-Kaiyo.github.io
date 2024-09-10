@@ -42,20 +42,29 @@
 	font-size: 4.5rem;
 	font-weight: 700;
 	color: #ffffff;
+}
 
-	@media screen and (max-width: 960px) {
+
+@media screen and (max-width: 960px) {
+	.page .heading-header-text {
 		font-size: 4rem;
 	}
+}
 
-	@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+	.page .heading-header-text {
 		font-size: 3rem;
 	}
+}
 
-	@media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) {
+	.page .heading-header-text {
 		font-size: 2rem;
 	}
+}
 
-	@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
+	.page .heading-header-text {
 		font-size: 1.5rem;
 	}
 }
@@ -65,16 +74,23 @@
 	font-size: 1.5rem;
 	font-weight: 600;
 	color: #ffffff;
+}
 
-	@media screen and (max-width: 960px) {
+
+@media screen and (max-width: 960px) {
+	.page .heading-subheader-text {
 		font-size: 1.25rem;
 	}
+}
 
-	@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+	.page .heading-subheader-text {
 		font-size: 1rem;
 	}
+}
 
-	@media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) {
+	.page .heading-subheader-text {
 		font-size: 0.85rem;
 	}
 }
@@ -91,9 +107,10 @@
 	cursor: pointer;
 	transition: background-color 0.3s;
 
-	&:hover {
-		background-color: #0056b3;
-	}
+}
+
+.page .heading-button:hover {
+	background-color: #0056b3;
 }
 
 
