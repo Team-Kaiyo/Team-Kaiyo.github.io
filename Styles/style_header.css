@@ -1,0 +1,158 @@
+#TopBar #nav-bar {
+	padding: 0 1rem;
+}
+
+#TopBar #nav-bar a {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin: 0 0.5rem;
+	text-decoration: none;
+	padding: 0.5rem 0.5rem;
+
+	border-radius: 5px;
+}
+
+#TopBar #nav-bar a:hover {
+	color: #007bff;
+	box-shadow: 0 10px 10px -10px #006ad2;
+}
+
+
+.sidebar .sidebar-items a {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ffffff;
+	margin: 0.5rem 0;
+	text-decoration: none;
+	padding: 0.5rem 0;
+	display: block;
+	text-align: center;
+	padding: 5px 5px;
+	margin: 15px 15px;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px -10px #006ad2;
+}
+
+.sidebar .sidebar-items a:hover {
+	color: #007bff;
+	background-color: black;
+	box-shadow: 10px 0 10px -10px #007bff, -10px 0 10px -10px #007bff, 0 10px 10px -10px #007bff;
+}
+
+a.highlight {
+	background-color: #007bffb9;
+	box-shadow: 0 10px 10px -10px #dbdbdb;
+}
+
+
+
+.heading {
+	font-weight: 700;
+	color: #ffffff;
+	margin-bottom: 1rem;
+	padding: 100px;
+
+	@media (max-width: 960px) {
+		padding: 75px 50px;
+	}
+
+	@media (max-width: 768px) {
+		padding: 50px 20px;
+	}
+
+	@media (max-width: 576px) {
+		padding: 30px 15px;
+	}
+
+	@media (max-width: 480px) {
+		padding: 20px 10px;
+	}
+}
+
+.heading-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.heading-side {
+	flex: 1;
+	padding: 0 1rem;
+
+	@media (max-width: 768px) {
+		padding: 0 0.5rem;
+	}
+
+	@media (max-width: 576px) {
+		padding: 0 0.25rem;
+	}
+
+	@media (max-width: 480px) {
+		padding: 0 0.125rem;
+	}
+}
+
+.heading-left {}
+
+.heading-right {
+	text-align: center;
+}
+
+
+
+
+.heading-header {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+}
+
+
+.heading-subheader {
+	font-size: 1.25rem;
+	font-weight: 400;
+	color: #dedede;
+	margin-bottom: 0.5rem;
+}
+
+
+.body-content {
+	padding: 3rem;
+
+	@media (max-width: 768px) {
+		padding: 2.5rem;
+	}
+
+	@media (max-width: 576px) {
+		padding: 2rem;
+	}
+
+}
+
+.body-content-text {
+	font-size: 1.4rem;
+	font-weight: 400;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+	max-width: 1080px;
+	background: #00000044;
+
+	text-align: justify;
+}
+
+
+.footer-content {
+	padding: 1rem;
+	text-align: center;
+	background: #00000044;
+	border-top: 1px solid #a5a5a5bd;
+}
+
+.footer-content-text {
+	font-size: 1rem;
+	font-weight: 400;
+	color: #ffffff;
+	margin-bottom: 0.5rem;
+}
