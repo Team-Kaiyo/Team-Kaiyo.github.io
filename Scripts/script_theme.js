@@ -421,14 +421,14 @@ class Top_Bar {
 		if (!this.dynamic_nav) {
 			return false;
 		}
-		page.handle_nav_click(PAGE_TYPE); // to make sure the current page is active and css is applied
+		page.handle_nav_click(); // to make sure the current page is active and css is applied
 
 		let nav_bar = document.getElementById('nav-bar');
 		for (let i = 0; i < nav_bar.children.length; i++) {
 			let item = nav_bar.children[i];
 			item.onclick = function (ev) {
 				ev.preventDefault();
-				let new_page_type = ev.target.getAttribute("data-page-type");
+				let new_page_type = item.getAttribute("data-page-type");
 
 				console.log("new_page_type", new_page_type);
 

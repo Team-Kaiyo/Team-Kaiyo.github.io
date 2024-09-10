@@ -955,7 +955,7 @@ function r_u_sure({ y = null_func, n = null, head = "Are you sure", body = "", y
 var HISTORY_ACTION = [];
 
 
-if (window.history && "pushState" in history) {
+if (window.history && "pushState" in history && ALLOW_PWA) {
 	// because JSHint told me to
 	// handle forward/back buttons
 	window.onpopstate = async function (evt) {

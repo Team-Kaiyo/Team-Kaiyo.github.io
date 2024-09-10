@@ -1,18 +1,15 @@
-class PageHandlerTemplate{
-	constructor(){
+class PageHandlerTemplate {
+	constructor() {
 		this.type = null;
 		this.href = window.location.href;
 		this.my_part = document.createElement("div");
 	}
 
-	initialize(){
-	}
+	initialize() {}
 
-	clear(){
-	}
+	clear() {}
 
-	hide(){
-	}
+	hide() {}
 
 	async make_push() {
 		await tools.sleep(100);
@@ -23,17 +20,18 @@ class PageHandlerTemplate{
 		// console.trace()
 	}
 
-	show() {
+	show(history_push = true) {
 		this.my_part.classList.add("active");
 		page.show_actions_button();
 
-		this.make_push();
+		if (history_push) {
+			this.make_push();
+		}
 
 	}
 
 
-	on_action_button(){
-	}
+	on_action_button() {}
 
 }
 
@@ -42,8 +40,8 @@ class PageHandlerTemplate{
 
 
 
-class Page{
-	constructor(){
+class Page {
+	constructor() {
 		this.container = byId('content_container')
 		this.type = null;
 		this.handler = new PageHandlerTemplate();
@@ -58,29 +56,29 @@ class Page{
 		}
 	}
 
-	get actions_loading_icon(){
+	get actions_loading_icon() {
 		return byId("actions-loading-icon")
 	}
 
-	get actions_button_icon(){
+	get actions_button_icon() {
 		return byId("actions-btn-icon")
 	}
 
-	get_type(){
+	get_type() {
 		return PAGE_TYPE;
 	}
 
-	hide_all(){
-		for (let handler of Object.values(this.handlers)){
+	hide_all() {
+		for (let handler of Object.values(this.handlers)) {
 			handler.hide();
 		}
 	}
 
-	clear(){
+	clear() {
 		this.handler.clear()
 	}
 
-	async initialize(){
+	async initialize(history_push = true) {
 		/*for(let t=3; t>0; t--){
 			console.log("Loading page in " + t)
 			await tools.sleep (1000)
@@ -102,15 +100,9 @@ class Page{
 
 		this.handler = this.handlers[type];
 
-		console.log("Handlers: ")
-		for (let key of Object.keys(this.handlers)){
-			console.log(key)
-			console.log(this.handlers[key])
-		}
-
-		if (this.handler){
+		if (this.handler) {
 			this.handler.initialize();
-			this.handler.show();
+			this.handler.show(history_push);
 		} else {
 			// popup_msg.createPopup("This type of page is not ready yet");
 			// popup_msg.show();
@@ -123,24 +115,24 @@ class Page{
 
 	}
 
-	show_loading(){
+	show_loading() {
 		this.actions_loading_icon.classList.remove("hidden");
 		this.actions_button_icon.classList.add("hidden");
 		this.actions_button_text.classList.add("hidden");
 	}
 
-	hide_loading(){
+	hide_loading() {
 		this.actions_loading_icon.classList.add("hidden");
 		this.actions_button_icon.classList.remove("hidden");
 		this.actions_button_text.classList.remove("hidden");
 	}
 
 
-	show_actions_button(){
+	show_actions_button() {
 		this.actions_button.style.display = "flex";
 	}
 
-	hide_actions_button(){
+	hide_actions_button() {
 		this.actions_button.style.display = "none";
 	}
 
@@ -156,23 +148,25 @@ class Page{
 		window.document.title = title;
 	}
 
-	move_to_top(){
+	move_to_top() {
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth'
 		})
 	}
 
-	async handle_nav_click(new_page_type='home'){
+	async handle_nav_click(new_page_type = 'home', push = true) {
 		let that = this;
+
 		let _last_page_type = PAGE_TYPE;
 		console.log("Last page type: " + _last_page_type, '\nNew page type: ' + new_page_type)
 
-		let on_back_button = (ev, last_page_type=_last_page_type) =>{
-			if (last_page_type == new_page_type){
+		let on_back_button = (ev) => {
+			console.log("Back button pressed", _last_page_type)
+			if (_last_page_type == new_page_type) {
 				return;
 			} else {
-				that.handle_nav_click(last_page_type);
+				that.handle_nav_click(_last_page_type, false);
 			}
 			// console.trace()
 		}
@@ -181,14 +175,14 @@ class Page{
 
 
 
-			
+
 
 		let nav_bar = document.getElementById('nav-bar');
 
 		let right_bar_items = sidebar_control.right_bar_items;
-		
+
 		for (let j = 0; j < nav_bar.children.length; j++) {
-			if(nav_bar.children[j].getAttribute("data-page-type") != PAGE_TYPE){
+			if (nav_bar.children[j].getAttribute("data-page-type") != PAGE_TYPE) {
 				nav_bar.children[j].classList.remove("disabled");
 				nav_bar.children[j].classList.remove("highlight");
 			} else {
@@ -206,18 +200,21 @@ class Page{
 			}
 		}
 
-		
-		if (new_page_type == _last_page_type){
+
+		if (push) {
+			// new state need to be added after sidebar is closed
+			await tools.sleep(100);
+			HISTORY_ACTION.push(on_back_button);
+		}
+
+
+		if (new_page_type == _last_page_type) {
 			return;
 		}
 
 		sidebar_control.closeNav();
-				
-		page.initialize();
 
-		// new state need to be added after sidebar is closed
-		await tools.sleep(100);
-		HISTORY_ACTION.push(on_back_button);
+		page.initialize(push);
 
 
 	}
