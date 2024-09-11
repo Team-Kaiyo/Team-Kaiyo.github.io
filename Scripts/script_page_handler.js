@@ -25,7 +25,7 @@ class PageHandlerTemplate {
 		page.show_actions_button();
 
 		if (history_push) {
-			this.make_push();
+			//this.make_push();
 		}
 
 	}
