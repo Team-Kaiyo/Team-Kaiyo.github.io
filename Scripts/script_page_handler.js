@@ -190,7 +190,10 @@ class Page {
 				nav_bar.children[j].classList.add("highlight");
 			}
 		}
+		
+		
 		for (let j = 0; j < right_bar_items.children.length; j++) {
+		  console.log(right_bar_items.children[j].getAttribute("data-page-type"), PAGE_TYPE)
 			if (right_bar_items.children[j].getAttribute("data-page-type") != PAGE_TYPE) {
 				right_bar_items.children[j].classList.remove("disabled");
 				right_bar_items.children[j].classList.remove("highlight");
@@ -201,11 +204,11 @@ class Page {
 		}
 
 
-		if (push) {
-			// new state need to be added after sidebar is closed
-			await tools.sleep(100);
-			HISTORY_ACTION.push(on_back_button);
-		}
+		// if (push) {
+		// 	// new state need to be added after sidebar is closed
+		// 	await tools.sleep(100);
+		// 	HISTORY_ACTION.push(on_back_button);
+		// }
 
 
 		if (new_page_type == _last_page_type) {
