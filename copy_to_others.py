@@ -12,7 +12,7 @@ while True:
 		index = _index
 		
 		pages = {
-			'./Solar-System.html': 'solar_system',
+			'./Explore.html': 'Explore',
 			'./Planet-Gaia-Derinkuyu.html': 'planet',
 			'./Life-on-planet.html': 'life',
 			'./About.html': 'about',

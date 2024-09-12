@@ -1,9 +1,9 @@
-class Solar_System_Page {
+class Explore_Page {
 	constructor() {
-		this.type = "solar_system"
-		this.href = tools.full_path("/Solar-System.html")
+		this.type = "explore"
+		this.href = tools.full_path("/Explore.html")
 
-		this.my_part = document.getElementById("solar_system-page")
+		this.my_part = document.getElementById("explore-page")
 	}
 
 	async initialize() {
@@ -18,7 +18,7 @@ class Solar_System_Page {
 	async make_push() {
 		await tools.sleep(100);
 		tools.fake_push({
-			"page": "solar_system"
+			"page": "explore"
 		}, this.href);
 	}
 
@@ -40,6 +40,6 @@ class Solar_System_Page {
 
 }
 
-var solar_system_page = new Solar_System_Page();
+var explore_page = new Explore_Page();
 
-page.handlers["solar_system"] = solar_system_page;
+page.handlers["explore"] = explore_page;
