@@ -335,7 +335,7 @@ class Tools {
 			state: state
 		}, document.title, url);
 		console.log("Fake push", state, url);
-		// console.trace();
+		console.trace();
 	}
 
 	/**

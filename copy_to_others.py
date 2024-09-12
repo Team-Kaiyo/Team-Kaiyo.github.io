@@ -13,7 +13,7 @@ while True:
 		
 		pages = {
 			'./Explore.html': 'Explore',
-			'./Planet-Gaia-Derinkuyu.html': 'planet',
+			'./Research.html': 'planet',
 			'./Life-on-planet.html': 'life',
 			'./About.html': 'about',
 			'./Team.html': 'team',
