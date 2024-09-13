@@ -92,4 +92,12 @@
     margin: 0 auto;
   }
 
+  .member-email {
+    font-size: 0.8rem;
+  }
+
+  .member-role {
+    font-size: 0.7rem;
+  }
+
 }
