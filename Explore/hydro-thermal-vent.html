@@ -26,15 +26,13 @@
 			'/About.html': 'about',
 			'/Team.html': 'team',
 		}
-
+		
 		console.log(window.location.pathname)
 		var PAGE_TYPE = types[window.location.pathname];
-
+		if (!PAGE_TYPE) {
+			PAGE_TYPE = 'any';
+		}
 	</script>
-
-	<link rel="stylesheet" href="Styles/style_home.css">
-	<link rel="stylesheet" href="Styles/style_team.css">
-	<link rel="stylesheet" href="Styles/style_about.css">
 
 
 	<style>
@@ -82,7 +80,7 @@
 			</a>
 		</span>
 
-
+	
 		<span id="nav-bar" style="display:none">
 			<a href="/index.html" class="nav-bar-link highlight disabled" data-page-type="home">Home</a>
 
@@ -148,7 +146,7 @@
 		</noscript>
 		<!-- Contains all the files -->
 
-		<div id="home-page" class="page">
+		<div id="h-thermal-vent-page" class="page">
 			<div class="heading">
 				<div class="heading-content">
 					<div class="heading-left heading-side">
@@ -163,9 +161,6 @@
 
 						<div class="heading-subheader">
 							<p class="heading-subheader-text">- The life hidden within the dark</p>
-
-							<audio src="/WebAsset/ema/Voice 010.mp3" class="plyr" controls></audio>
-
 						</div>
 
 					</div>
@@ -186,8 +181,7 @@
 							here, but the nature works in a mysterious way under the shed.
 
 							<br>
-							Long distance from its star <a href="/Explore/Solar-System.html"
-								style="color: goldenrod;">"Sidus
+							Long distance from its star <a href="/Explore/Solar-System.html" style="color: goldenrod;">"Sidus
 								Ignis"</a> keeps it cold while the Volcanic surface carry the heat to the deep water
 							body, maintaining the temperature of the planet <i>(300°C at day to -38°C at night)</i>. The
 							planet is also known for its rich minerals and unique combination magnetic and centrifugal
@@ -195,7 +189,7 @@
 						</p>
 					</div>
 
-
+					
 					<!-- Namesake -->
 
 					<div id="namesake-segment">
@@ -412,7 +406,7 @@
 			<div class="body-content">
 				<div class="body-content-text center">
 
-				</div>
+				</div>	
 			</div>
 
 			<div class="footer-content">

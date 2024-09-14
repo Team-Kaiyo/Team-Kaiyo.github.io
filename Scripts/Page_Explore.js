@@ -1,5 +1,6 @@
-class Explore_Page {
+class Explore_Page extends PageHandlerTemplate {
 	constructor() {
+		super();
 		this.type = "explore"
 		this.href = tools.full_path("/Explore.html")
 
@@ -11,31 +12,7 @@ class Explore_Page {
 
 	}
 
-	hide() {
-		this.my_part.classList.remove("active");
-	}
-
-	async make_push() {
-		await tools.sleep(100);
-		tools.fake_push({
-			"page": "explore"
-		}, this.href);
-	}
-
-	show() {
-		this.my_part.classList.add("active");
-		page.show_actions_button();
-
-		
-		this.make_push();
-
-	}
-
 	clear() {
-	}
-
-	on_action_button() {
-		page.move_to_top();
 	}
 
 }

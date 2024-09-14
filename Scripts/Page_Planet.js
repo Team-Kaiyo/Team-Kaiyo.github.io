@@ -12,15 +12,7 @@ class Planet_Page extends PageHandlerTemplate {
 		page.hide_actions_button(); // Hide actions button, not needed here
 	}
 
-	hide() {
-		this.my_part.classList.remove("active");
-	}
-
 	clear() {
-	}
-
-	on_action_button() {
-		page.move_to_top();
 	}
 
 }

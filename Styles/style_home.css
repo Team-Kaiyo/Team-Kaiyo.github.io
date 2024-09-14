@@ -1,11 +1,3 @@
-.page {
-	background-image: url('/WebAsset/download_4_optimized.webp');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-}
-
-
 .planet-spin {
 	animation: spin 30s linear infinite;
 	width: 500px;
@@ -46,7 +38,7 @@
 
 @media screen and (max-width: 1200px) {
 	.page .heading-header-text {
-		font-size: 4rem;
+		font-size: 3.5rem;
 	}
 	
 }
@@ -54,7 +46,7 @@
 
 @media screen and (max-width: 960px) {
 	.page .heading-header-text {
-		font-size: 3.5rem;
+		font-size: 3rem;
 	}
 }
 

@@ -146,15 +146,19 @@ a.highlight {
 
 .body-content {
 	padding: 3rem;
+}
 
-	@media (max-width: 768px) {
+
+@media (max-width: 768px) {
+	.body-content {
 		padding: 2.5rem;
 	}
+}
 
-	@media (max-width: 576px) {
+@media (max-width: 576px) {
+	.body-content {
 		padding: 2rem;
 	}
-
 }
 
 .body-content-text {

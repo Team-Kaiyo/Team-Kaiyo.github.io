@@ -1,15 +1,19 @@
 class PageHandlerTemplate {
 	constructor() {
-		this.type = null;
+		this.type = 'any';
 		this.href = window.location.href;
-		this.my_part = document.createElement("div");
+		this.my_part = document.querySelector(".page");
 	}
 
 	initialize() {}
 
 	clear() {}
 
-	hide() {}
+	hide() {
+		if (this.my_part) {
+			this.my_part.classList.remove("active");
+		}
+	}
 
 	async make_push() {
 		await tools.sleep(100);
@@ -31,8 +35,9 @@ class PageHandlerTemplate {
 	}
 
 
-	on_action_button() {}
-
+	on_action_button() {
+		page.move_to_top();
+	}
 }
 
 
@@ -52,6 +57,7 @@ class Page {
 
 
 		this.handlers = {
+			"any": this.handler,
 			// "home": home_page,
 		}
 	}
