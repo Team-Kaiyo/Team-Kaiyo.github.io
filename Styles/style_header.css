@@ -167,7 +167,7 @@ a.highlight {
 	color: #ffffff;
 	margin-bottom: 0.5rem;
 	max-width: 1080px;
-	background: #00000044;
+	/* background: #00000044; */
 
 	text-align: justify;
 }
@@ -176,7 +176,7 @@ a.highlight {
 .footer-content {
 	padding: 1rem;
 	text-align: center;
-	background: #00000044;
+	/* background: #00000044; */
 	border-top: 1px solid #a5a5a5bd;
 }
 

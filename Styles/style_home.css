@@ -1,5 +1,5 @@
 .planet-spin {
-	animation: spin 30s linear infinite;
+	/* animation: spin 30s linear infinite; */
 	width: 500px;
 
 	@media (max-width: 1150px) {
@@ -117,3 +117,15 @@
 }
 
 
+select#model-picker {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #000000;
+	background-color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem 0.5rem;
+	margin-top: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}

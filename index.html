@@ -11,6 +11,11 @@
 	<link rel="stylesheet" href="/Styles/style_main.css">
 	<link rel="stylesheet" href="/Styles/style_header.css">
 	<link rel="stylesheet" href="/Styles/style_sitewide.css">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
 </head>
 
 
@@ -66,8 +71,6 @@
 			}
 		</style>
 	</noscript>
-
-	<link rel="icon" href="https://cdn.jsdelivr.net/gh/RaSan147/pyrobox@main/assets/favicon.png" type="image/png">
 
 
 
@@ -152,7 +155,7 @@
 			<div class="heading">
 				<div class="heading-content">
 					<div class="heading-left heading-side">
-						<img src="/WebAsset/planet.webp" alt="Planet" class="spin planet-spin">
+						<video src="/WebAsset/Planet_Spin.mp4" muted autoplay loop class="planet-spin"></video>
 
 					</div>
 
@@ -318,10 +321,16 @@
 									display: none;
 								}
 							</style>
-							<model-viewer src="/3D_models/water_body lvl 2 crossection.glb" ar
+							<span>Model:</span>
+							<select id="model-picker">
+								<option value="surface">Surface</option>
+								<option value="wo-surface">Without Surface</option>
+								<option value="crossection">Crossection</option>
+							</select>
+							<model-viewer src="/3D_models/water_body lvl 2 surface low.glb" ar
 								ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"
-								poster="/3D_models/Planet_crossection_thumb.webp" shadow-intensity="1.02"
-								exposure="0.83" shadow-softness="0.89" auto-rotate id="Planet-3D-Core">
+								poster="/3D_models/Surface.webp" shadow-intensity="1.02" exposure="0.83"
+								shadow-softness="0.89" auto-rotate id="Planet-3D-Core">
 								<div class="progress-bar hide" slot="progress-bar">
 									<div class="update-bar"></div>
 								</div>
@@ -346,6 +355,20 @@
 											fullscreenButton.classList.remove('is_fullscreen');
 										}
 									});
+
+									const models = {
+										'surface': '/3D_models/water_body lvl 2 surface low.glb',
+										'wo-surface': '/3D_models/water_body lvl 2 wo-surface low.glb',
+										'crossection': '/3D_models/water_body lvl 2 crossection low.glb'
+									};
+
+									const modelPicker = document.getElementById('model-picker');
+
+									modelPicker.addEventListener('input', () => {
+										modelViewer.src = models[modelPicker.value];
+									});
+
+
 								</script>
 							</model-viewer>
 						</div>
@@ -383,7 +406,8 @@
 							that of Earth.
 							<br>
 							The planet also has a slow rotation on its axis, taking about 30 hours to complete one full
-							rotation. Despite the slow rotation, the greenhouse filled atmosphere keeps the temperature between -8 to 22C (with an average of 10C).
+							rotation. Despite the slow rotation, the greenhouse filled atmosphere keeps the temperature
+							between -8 to 22C (with an average of 10C).
 						</p>
 
 						<iframe
@@ -551,6 +575,84 @@
 
 			<div class="body-content">
 				<div class="body-content-text center">
+					<h2 style="text-align: center;">References for Project</h2>
+					<style>
+						table {
+							width: 100%;
+							border-collapse: collapse;
+						}
+
+						table,
+						th,
+						td {
+							border: 1px solid rgb(80, 80, 80);
+						}
+
+						th,
+						td {
+							padding: 15px;
+							text-align: left;
+						}
+
+						th {
+							background-color: #2c2c2c;
+						}
+					</style>
+
+					<!-- make a table with heading topic and link -->
+					<table>
+						<tr>
+							<th>Topic</th>
+							<th>Link</th>
+						</tr>
+						<tr>
+							<td>BioFilm</td>
+							<td>
+								<a
+									href="https://science.nasa.gov/biological-physical/investigations/space-biofilms/">Investigations (by NASA)</a>
+								<br>
+								<a
+									href="https://science.nasa.gov/biological-physical/investigations/bacterial-adhesion/">Growth
+									and Control (by NASA)</a> <br>
+								<a
+									href="https://www.nasa.gov/centers-and-facilities/marshall/nasa-marshall-researchers-battle-biofilm-in-space/">NASA
+									Marshall Researchers Battle Biofilm in Space (by NASA)</a> <br>
+								<a href="https://www.sciencedirect.com/science/article/pii/S2590207522000363">Mitigation
+									and use of biofilms in space</a> <br>
+							</td>
+						</tr>
+						<tr>
+							<td>Ocean World</td>
+							<td><a href="https://www.youtube.com/watch?v=_9AYw2EQm8s">Ocean Worlds around us (By Nasa)</a></td>
+						</tr>
+						<tr>
+							<td>Planet 3D texture base</td>
+							<td><a href="https://science.nasa.gov/resource/enhanced-color-mercury-map/">Enhanced Color
+									Mercury Map (by NASA)</a><br>
+								<a href="https://www.solarsystemscope.com/textures/">Sun and Core 3D texture</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Land Rover</td>
+							<td>
+								<a href="https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/">Mars
+									Perseverance Rover, 3D Model (by NASA)</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Submerive Rover</td>
+							<td>
+								<a
+									href="https://sketchfab.com/3d-models/physter-underwater-smart-rov-d448dbea41394347ab2aece26bdb5531">Physter
+									Underwater Smart ROV</a>
+								<br>
+								<span style="font-size: small;">"Physter Underwater Smart ROV" (https://skfb.ly/o6IpD)
+									by TheRedMan is licensed under CC Attribution-NonCommercial-ShareAlike
+									(http://creativecommons.org/licenses/by-nc-sa/4.0/).</span>
+
+							</td>
+						</tr>
+					</table>
 
 				</div>
 			</div>

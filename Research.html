@@ -11,6 +11,11 @@
 	<link rel="stylesheet" href="/Styles/style_main.css">
 	<link rel="stylesheet" href="/Styles/style_header.css">
 	<link rel="stylesheet" href="/Styles/style_sitewide.css">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
 </head>
 
 
@@ -66,8 +71,6 @@
 			}
 		</style>
 	</noscript>
-
-	<link rel="icon" href="https://cdn.jsdelivr.net/gh/RaSan147/pyrobox@main/assets/favicon.png" type="image/png">
 
 
 
@@ -152,7 +155,7 @@
 			<div class="heading">
 				<div class="heading-content">
 					<div class="heading-left heading-side">
-						<img src="/WebAsset/planet.webp" alt="Planet" class="spin planet-spin">
+						<video src="/WebAsset/Planet_Spin.mp4" muted autoplay loop class="planet-spin"></video>
 
 					</div>
 
@@ -164,8 +167,6 @@
 						<div class="heading-subheader">
 							<p class="heading-subheader-text">- The life hidden within the dark</p>
 
-							<audio src="/WebAsset/ema/Voice 010.mp3" class="plyr" controls></audio>
-
 						</div>
 
 					</div>
@@ -174,6 +175,12 @@
 
 			<div class="body-content">
 				<div class="body-content-text center">
+
+					<iframe width="90%" height="512" src="https://www.youtube.com/embed/ZFbboC_gWUA?si=jYkafjzvfIWvGOhR"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+						style="display:block;margin: 0 auto;"></iframe>
 
 					<!-- Introduction -->
 
@@ -223,26 +230,148 @@
 						<h2 id="size-distance-header">Size and Distance:</h2>
 						<p id="size-distance-text">
 							Gaia Derinkuyu is a relatively small planet compared to others in the solar system. It has
-							a diameter of approximately <b>6,792 kilometers (4,220 miles)</b>, making it slightly larger
-							than
-							Mercury.
-							<br>
-							The planet is located at a distance of about 0.72 astronomical units (AU) from its
-							star, Sidus Ignis. This distance places it within the habitable zone of the star, where
-							conditions are suitable for the presence of liquid water.
-							<br><br>
-							Want to dig up some more information? <a href="/Explore.html">Check out the planet
-								structure
-								<span class="fa fa-light fa-person-digging">⛏️</span>
-							</a>
+							a radius of approximately <b>5,134 kilometers, slightly smaller than Earth.
+								<br>
+								The planet is located at a distance of about 1.55 astronomical units (AU) from its
+								star, Sidus Ignis. This distance places it within the habitable zone of the star, where
+								conditions are suitable for the presence of liquid water.
+								<br><br>
+								Want to dig up some more information? <a href="/Explore.html">Check out the planet
+									structure
+									<span class="fa fa-light fa-person-digging">⛏️</span>
+								</a>
 						</p>
 
-						<iframe
-							src="https://solarsystem.nasa.gov/gltf_embed/2369/?height=450&amp;amp;rotate=true&amp;amp;cc=true&amp;amp;fs=true&amp;amp;target=&amp;amp;orbit="
-							title="" class="smd-iframe-iframe margin-left-auto margin-right-auto border-0"
-							allow="fullscreen" frameborder="0" width="100%" height="450">Unable to render the provided
-							source</iframe>
+						<div id="planet_3D_crossection_container" style="display: contents;">
+							<script type="module"
+								src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+							<style>
+								model-viewer {
+									width: 100%;
+									height: 450px;
+								}
 
+								.is_ie .fullscreen {
+									display: none;
+								}
+
+								.fullscreen {
+									display: block;
+									position: absolute;
+									width: 25px;
+									height: 25px;
+									top: 10px;
+									right: 10px;
+									background: url("/3D_models/fullscreen_sprite@2x.png") 1px -25px;
+									background-size: 25px;
+									z-index: 1;
+									cursor: pointer;
+									pointer-events: auto;
+								}
+
+								.fullscreen.tr {
+									top: 10px;
+									right: 10px;
+									bottom: auto;
+									left: auto;
+								}
+
+								.fullscreen.br {
+									top: auto;
+									right: 10px;
+									bottom: 10px;
+									left: auto;
+								}
+
+								.fullscreen.bl {
+									top: auto;
+									right: auto;
+									bottom: 10px;
+									left: 10px;
+								}
+
+								.fullscreen.tl {
+									top: 10px;
+									right: auto;
+									bottom: auto;
+									left: 10px;
+								}
+
+								.ios .fullscreen {
+									display: none;
+								}
+
+								.fullscreen:hover {
+									background: url("/3D_models/fullscreen_sprite@2x.png") 1px 0px;
+									background-size: 25px;
+								}
+
+								.is_fullscreen.fullscreen {
+									background: url("/3D_models/fullscreen_sprite@2x.png") 1px -74px;
+									background-size: 25px;
+								}
+
+								.is_fullscreen.fullscreen:hover {
+									background: url("/3D_models/fullscreen_sprite@2x.png") 1px -49px;
+									background-size: 25px;
+								}
+
+								model-viewer p.style-scope {
+									/* // Help message doesn't auto hide on Edge */
+									display: none;
+								}
+							</style>
+							<span>Model:</span>
+							<select id="model-picker">
+								<option value="surface">Surface</option>
+								<option value="wo-surface">Without Surface</option>
+								<option value="crossection">Crossection</option>
+							</select>
+							<model-viewer src="/3D_models/water_body lvl 2 surface low.glb" ar
+								ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"
+								poster="/3D_models/Surface.webp" shadow-intensity="1.02" exposure="0.83"
+								shadow-softness="0.89" auto-rotate id="Planet-3D-Core">
+								<div class="progress-bar hide" slot="progress-bar">
+									<div class="update-bar"></div>
+								</div>
+								<div class="fullscreen tr" data-toggle-fullscreen=""></div>
+								<script>
+									const modelViewer = document.getElementById('Planet-3D-Core');
+									const arButton = document.getElementById('ar-button');
+									const arPrompt = document.getElementById('ar-prompt');
+									const fullscreenButton = document.querySelector('.fullscreen');
+									const toggleFullscreen = () => {
+										if (document.fullscreenElement) {
+											document.exitFullscreen();
+										} else {
+											modelViewer.requestFullscreen();
+										}
+									};
+									fullscreenButton.addEventListener('click', toggleFullscreen);
+									modelViewer.addEventListener('fullscreenchange', () => {
+										if (document.fullscreenElement) {
+											fullscreenButton.classList.add('is_fullscreen');
+										} else {
+											fullscreenButton.classList.remove('is_fullscreen');
+										}
+									});
+
+									const models = {
+										'surface': '/3D_models/water_body lvl 2 surface low.glb',
+										'wo-surface': '/3D_models/water_body lvl 2 wo-surface low.glb',
+										'crossection': '/3D_models/water_body lvl 2 crossection low.glb'
+									};
+
+									const modelPicker = document.getElementById('model-picker');
+
+									modelPicker.addEventListener('input', () => {
+										modelViewer.src = models[modelPicker.value];
+									});
+
+
+								</script>
+							</model-viewer>
+						</div>
 					</div>
 
 					<!-- Potential for Life -->
@@ -273,12 +402,12 @@
 						<h2 id="orbit-rotation-header">Orbit and Rotation:</h2>
 						<p id="orbit-rotation-text">
 							Gaia Derinkuyu has an elliptical orbit around its star, Sidus Ignis. The planet takes
-							approximately 225 Earth days to complete one orbit, resulting in a year that is shorter than
+							approximately 625 Earth days to complete one orbit, resulting in a year that is shorter than
 							that of Earth.
 							<br>
 							The planet also has a slow rotation on its axis, taking about 30 hours to complete one full
-							rotation. This slow rotation contributes to the extreme temperature variations between day
-							and night on the planet.
+							rotation. Despite the slow rotation, the greenhouse filled atmosphere keeps the temperature
+							between -8 to 22C (with an average of 10C).
 						</p>
 
 						<iframe
@@ -446,6 +575,84 @@
 
 			<div class="body-content">
 				<div class="body-content-text center">
+					<h2 style="text-align: center;">References for Project</h2>
+					<style>
+						table {
+							width: 100%;
+							border-collapse: collapse;
+						}
+
+						table,
+						th,
+						td {
+							border: 1px solid rgb(80, 80, 80);
+						}
+
+						th,
+						td {
+							padding: 15px;
+							text-align: left;
+						}
+
+						th {
+							background-color: #2c2c2c;
+						}
+					</style>
+
+					<!-- make a table with heading topic and link -->
+					<table>
+						<tr>
+							<th>Topic</th>
+							<th>Link</th>
+						</tr>
+						<tr>
+							<td>BioFilm</td>
+							<td>
+								<a
+									href="https://science.nasa.gov/biological-physical/investigations/space-biofilms/">Investigations (by NASA)</a>
+								<br>
+								<a
+									href="https://science.nasa.gov/biological-physical/investigations/bacterial-adhesion/">Growth
+									and Control (by NASA)</a> <br>
+								<a
+									href="https://www.nasa.gov/centers-and-facilities/marshall/nasa-marshall-researchers-battle-biofilm-in-space/">NASA
+									Marshall Researchers Battle Biofilm in Space (by NASA)</a> <br>
+								<a href="https://www.sciencedirect.com/science/article/pii/S2590207522000363">Mitigation
+									and use of biofilms in space</a> <br>
+							</td>
+						</tr>
+						<tr>
+							<td>Ocean World</td>
+							<td><a href="https://www.youtube.com/watch?v=_9AYw2EQm8s">Ocean Worlds around us (By Nasa)</a></td>
+						</tr>
+						<tr>
+							<td>Planet 3D texture base</td>
+							<td><a href="https://science.nasa.gov/resource/enhanced-color-mercury-map/">Enhanced Color
+									Mercury Map (by NASA)</a><br>
+								<a href="https://www.solarsystemscope.com/textures/">Sun and Core 3D texture</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Land Rover</td>
+							<td>
+								<a href="https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/">Mars
+									Perseverance Rover, 3D Model (by NASA)</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Submerive Rover</td>
+							<td>
+								<a
+									href="https://sketchfab.com/3d-models/physter-underwater-smart-rov-d448dbea41394347ab2aece26bdb5531">Physter
+									Underwater Smart ROV</a>
+								<br>
+								<span style="font-size: small;">"Physter Underwater Smart ROV" (https://skfb.ly/o6IpD)
+									by TheRedMan is licensed under CC Attribution-NonCommercial-ShareAlike
+									(http://creativecommons.org/licenses/by-nc-sa/4.0/).</span>
+
+							</td>
+						</tr>
+					</table>
 
 				</div>
 			</div>
