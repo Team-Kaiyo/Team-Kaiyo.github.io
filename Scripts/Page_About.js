@@ -7,8 +7,10 @@ class About_Page extends PageHandlerTemplate {
 
 		this.my_part = document.getElementById("about-page")
 	}
-
+	
 	async initialize() {
+		console.log("About_Page constructor")
+		console.log(this.my_part)
 		page.hide_actions_button(); // Hide actions button, not needed here
 	}
 
